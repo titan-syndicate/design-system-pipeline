@@ -2,19 +2,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: design-system-pipeline
+  name: storybook
 spec:
   selector:
     matchLabels:
-      app: design-system-pipeline
+      app: storybook
   replicas: 1
   template:
     metadata:
       labels:
-        app: design-system-pipeline
+        app: storybook
     spec:
       containers:
-      - name: design-system-pipeline
+      - name: design-system-pipeline-storybook
+        image: okteto.dev/design-system-pipeline:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+spec:
+  selector:
+    matchLabels:
+      app: react-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: design-system-pipeline-react-app
         image: okteto.dev/design-system-pipeline:latest
         ports:
         - containerPort: 8080

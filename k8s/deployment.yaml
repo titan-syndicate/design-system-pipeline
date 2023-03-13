@@ -1,11 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: design-system-pipeline
+  name: storybook
 spec:
   type: LoadBalancer
   ports:
     - name: http
       port: 6006
   selector:
-    app: design-system-pipeline
+    app: storybook
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-app
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 3000
+  selector:
+    app: react-app
