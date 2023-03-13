@@ -1,0 +1,20 @@
+build:
+  design-system-pipeline:
+    image: okteto.dev/design-system-pipeline:latest
+    context: ./
+    dockerfile: Dockerfile
+deploy:
+  - kubectl apply -f k8s --recursive
+dev:
+  design-system-pipeline:
+    command: yarn storybook
+    sync:
+      - ./src:/src
+    externalVolumes:
+      - design-system-pipeline-dist:/dist
+  react-app:
+    command: yarn start
+    sync:
+      - ./src:/src
+    externalVolumes:
+      - design-system-pipeline-dist:/dist

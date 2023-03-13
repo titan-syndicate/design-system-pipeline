@@ -1,0 +1,20 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: design-system-pipeline
+spec:
+  selector:
+    matchLabels:
+      app: design-system-pipeline
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: design-system-pipeline
+    spec:
+      containers:
+      - name: design-system-pipeline
+        image: okteto.dev/design-system-pipeline:latest
+        ports:
+        - containerPort: 8080
