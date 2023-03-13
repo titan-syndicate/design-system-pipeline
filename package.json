@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/titan-syndicate/design-system-pipeline/issues"
   },
-  "homepage": "https://github.com/titan-syndicate/design-system-pipeline#readme"
+  "homepage": "https://github.com/titan-syndicate/design-system-pipeline#readme",
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.12"
+  }
 }
