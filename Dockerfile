@@ -22,13 +22,14 @@
 # EXPOSE 8080
 
 
-FROM node:19.7 as build
+FROM node:15.4 as build
 
 
 # WORKDIR /react-app
 
 
 COPY package.json .
+COPY yarn.lock .
 
 
 RUN yarn install
