@@ -22,7 +22,7 @@
 # EXPOSE 8080
 
 
-FROM node:15.4 as build
+FROM node:16.10.0 as build
 
 
 # WORKDIR /react-app
