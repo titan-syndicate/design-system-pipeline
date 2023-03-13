@@ -46,4 +46,4 @@ COPY . .
 
 # COPY ./nginx.conf /etc/nginx/nginx.conf
 
-ENTRYPOINT yarn storybook
+# ENTRYPOINT yarn storybook

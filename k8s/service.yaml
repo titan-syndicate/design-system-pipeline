@@ -1,40 +1,23 @@
-
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: storybook
 spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 6006
   selector:
-    matchLabels:
-      app: storybook
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: storybook
-    spec:
-      containers:
-      - name: design-system-pipeline-storybook
-        image: okteto.dev/design-system-pipeline:latest
-        ports:
-        - containerPort: 8080
+    app: storybook
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   name: react-app
 spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 3000
   selector:
-    matchLabels:
-      app: react-app
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: react-app
-    spec:
-      containers:
-      - name: design-system-pipeline-react-app
-        image: okteto.dev/design-system-pipeline:latest
-        ports:
-        - containerPort: 8080
+    app: react-app
