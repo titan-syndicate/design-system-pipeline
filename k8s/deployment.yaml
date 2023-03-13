@@ -15,6 +15,8 @@ spec:
       containers:
       - name: design-system-pipeline-storybook
         image: okteto.dev/design-system-pipeline:latest
+        command: ["yarn"]
+        args: ["storybook"]
         ports:
         - containerPort: 8080
 ---
@@ -35,5 +37,7 @@ spec:
       containers:
       - name: design-system-pipeline-react-app
         image: okteto.dev/design-system-pipeline:latest
+        command: ["yarn"]
+        args: ["start"]
         ports:
         - containerPort: 8080
