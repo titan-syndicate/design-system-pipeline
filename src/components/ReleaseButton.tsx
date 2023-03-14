@@ -13,7 +13,8 @@ function ReleaseButton() {
       (<Button
         variant="contained"
         color="primary"
-        onClick={() => send(event)}>
+        onClick={() => send(event)}
+        >
         {event}
       </Button>))}
       {state.value.toString() === "releasing" && (
