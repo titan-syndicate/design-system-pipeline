@@ -10,11 +10,11 @@ dev:
     command: yarn storybook
     sync:
       - ./src:/src
-    externalVolumes:
-      - design-system-pipeline-dist:/dist
+    # externalVolumes:
+    #   - design-system-pipeline-dist:/dist
   react-app:
     command: yarn start
     sync:
       - ./src:/src
-    externalVolumes:
-      - design-system-pipeline-dist:/dist
+    # externalVolumes:
+    #   - design-system-pipeline-dist:/dist
