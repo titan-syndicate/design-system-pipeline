@@ -1,15 +1,29 @@
 import Button from "@mui/material/Button";
-import { useMachine } from "@xstate/react";
-import { releaseButtonMachine } from "./releaseButtonMachine";
+// import Alert from "@mui/material/Alert";
+// import { useMachine } from "@xstate/react";
+// import { releaseButtonMachine } from "./releaseButtonMachine";
 
 function ReleaseButton() {
-  const [state, send] = useMachine(releaseButtonMachine);
-  const buttonName = state.matches("release") ? "Release" : "Undo";
+//   const [state, send] = useMachine(releaseButtonMachine);
   return (
-    <Button variant="contained" color="primary"
-      onClick={() => send(state.nextEvents[0])}>
-      {buttonName}
+    <>
+    <Button variant="contained" color="primary">
+      Release
     </Button>
+      {/* {state.nextEvents
+      .filter((event) => !event.startsWith('xstate'))
+      .map((event) =>
+      (<Button
+        variant="contained"
+        color="primary"
+        onClick={() => send(event)}>
+        {event}
+      </Button>))}
+      {state.value.toString() === "releasing" && (
+        <Alert severity="info">Releasing</Alert>)}
+      {state.value.toString() === "released" && (
+        <Alert severity="success">Released</Alert>)} */}
+    </>
   );
 }
 
