@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DemoRoutes } from './DemoRoutes';
 import { BrowserRouter } from 'react-router-dom';
+import replicatedTheme from './ReplicatedTheme';
+import { ThemeProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +15,9 @@ root.render(
   <React.StrictMode>
     {/* <App /> */}
     <BrowserRouter>
+      <ThemeProvider theme={replicatedTheme}>
       <DemoRoutes />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
