@@ -2,8 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { Container } from "@mui/system";
 import { Link, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useMachine } from "@xstate/react";
-import bannerMachine from "./bannerMachine";
 
 function usePrevious(value: any) {
   // The ref object is a generic container whose current property is mutable ...
@@ -17,7 +15,15 @@ function usePrevious(value: any) {
   return ref.current;
 }
 
-const Banner = () => {
+const Banner = ({
+  apiKey,
+  channelId,
+  appId,
+}: {
+  apiKey: string;
+  channelId: string;
+  appId: string;
+}) => {
   //   const [state, send] = useMachine(bannerMachine);
   const [currentVersion, setCurrentVersion] = useState("");
   const previousVersion = usePrevious(currentVersion);
@@ -27,31 +33,32 @@ const Banner = () => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "947cf1cd06be3577655f28e1999a7672ec26dbf9900faa909d9a3a283c345bfd",
+      Authorization: apiKey,
     },
   };
 
-  const fetchRelease = () =>
-    fetch(
-      "https://api.replicated.com/vendor/v3/app/2MyIU7YVJvqnlTfgPMILmTr7iUZ/channel/2MyIU4o7jdYdrT49ZEnh2z7J4rD",
-      options,
-    )
-      .then((response) => response.json())
-      .then((response) => setCurrentVersion(response.channel.currentVersion))
-      .catch((err) => console.error(err));
-
-  fetchRelease();
-
   useEffect(() => {
-    let id = setInterval(() => fetchRelease(), 1000);
-    console.log(currentVersion);
-    if (currentVersion !== previousVersion) {
-      fetchRelease();
-      setHidden(false);
-      clearInterval(id);
+    if (apiKey !== "" && channelId !== "" && apiKey !== "") {
+      let id = setInterval(() => fetchRelease(), 1000);
+
+      const fetchRelease = () => {
+        fetch(
+          `https://api.replicated.com/vendor/v3/app/${appId}/channel/${channelId}`,
+          options,
+        )
+          .then((response) => response.json())
+          .then((response) =>
+            setCurrentVersion(response.channel.currentVersion),
+          )
+          .catch((err) => console.error(err));
+      };
+      if (currentVersion !== previousVersion) {
+        fetchRelease();
+        setHidden(false);
+        clearInterval(id);
+      }
     }
-  }, [currentVersion, previousVersion]);
+  }, [apiKey, appId, channelId, currentVersion, previousVersion]);
 
   return (
     <>
